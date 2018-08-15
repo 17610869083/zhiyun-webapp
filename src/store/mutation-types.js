@@ -1,0 +1,6 @@
+export const SET_ORIGINAL_URL = 'SET_ORIGINAL_URL'
+export const SEARCH_PARAM = 'SEARCH_PARAM'
+export const WEIBO_PARAM = 'WEIBO_PARAM'
+export const TOPIC_PARAM = 'TOPIC_PARAM'
+export const SITUATION_PARAM = 'SITUATION_PARAM' 
+export const USER_INFO = 'USER_INFO' 

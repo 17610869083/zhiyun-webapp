@@ -1,0 +1,43 @@
+export const state = {
+  topicRule:{'topicName':'', 'begin':'', 'End':'', rule:[]},
+  originalUrl: '',
+  delKeyword:false,
+  waring:false,
+  delReport:false,
+  param:{
+    filterValue:1,
+    sortValue:'timedown',
+    timeValue:'all',
+    trendValue:'all',
+    keyword:'',
+    carry:'全部',
+    page:1,
+    sortIndex:0
+ },
+ weiboparam:{
+    filterValue:1,
+    sortValue:'timedown',
+    timeValue:'all',
+    trendValue:'all',
+    keyword:'',
+    carry:'微博',
+    page:1,
+    sortIndex:2
+ },
+ topicparam:{
+    filterValue:1,
+    sortValue:'timedown',
+    timeValue:'all',
+    trendValue:'all',
+    carry:'全部',
+    page:1,
+    flag:false,
+    topicid:1,
+    sortIndex:0
+ },
+ situationparam:{
+    sortIndex:2,
+    neg:'all'
+ },
+ info:{}
+}
