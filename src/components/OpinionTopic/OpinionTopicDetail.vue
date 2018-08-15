@@ -240,6 +240,7 @@ export default {
         }
     },
     created(){
+          this.showLoading = true;
           let topicid=this.$route.query.topicid;
           let type=this.$route.query.type;
           const param = Object.assign({}, this.param, {topicid:topicid})
@@ -252,16 +253,18 @@ export default {
                        }else{
                          this.isShowChart=false
                        }
-                        }) 
-                        if(param.flag){
+                }) 
+                if(param.flag){
                          requestTopicList(api_get_topicList,param,'topicid')
                         .then(res=>{
+                               this.showLoading = false 
                                 if(res.data.code===1){
                                 this.docList=res.data.docList
                                 this.carryCount=res.data.carryCount
                                 const state= res.data.pageInfo.count<=10?false:true
                                 this.loadMoreBtn=state
                                 this.type=type  
+                                
                                 }else{
                                 this.isBlankpageShow=true
                                 }
@@ -269,12 +272,14 @@ export default {
                         }else{
                             request(api_get_topicList +`&topicid=${topicid}`)
                             .then(res => {
+                                this.showLoading = false 
                                 if(res.data.code===1){
                                 this.docList=res.data.docList
                                 this.carryCount=res.data.carryCount
                                 const state= res.data.pageInfo.count<=10?false:true
                                 this.loadMoreBtn=state
                                 this.type=type  
+                                this.showLoading = false   
                                 }else{
                                 this.isBlankpageShow=true
                                 }  
@@ -292,12 +297,14 @@ export default {
                         if(param.flag){
                             requestTopicList(api_get_gradeList,param,'clfid')
                             .then(res=>{
+                                        this.showLoading = false 
                                         if(res.data.code===1){
                                         this.docList=res.data.docList
                                         this.carryCount=res.data.carryCount
                                         const state= res.data.pageInfo.count<=10?false:true
                                         this.loadMoreBtn=state
                                         this.type=type  
+                                        this.showLoading = false 
                                         }else{
                                         this.isBlankpageShow=true
                                         }
@@ -305,18 +312,22 @@ export default {
                         }else{
                             request(api_get_gradeList +`&clfid=${topicid}`)
                             .then(res => {
+                                        this.showLoading = false 
                                         if(res.data.code===1){
                                         this.docList=res.data.docList
                                         this.carryCount=res.data.carryCount
                                         const state= res.data.pageInfo.count<=10?false:true
                                         this.loadMoreBtn=state
                                         this.type=type  
+                                        this.showLoading = false 
                                         }else{
                                         this.isBlankpageShow=true
                                         }
                             })
                         }
                }
+               
+             
     },
     mounted(){
         this._calcHeight()

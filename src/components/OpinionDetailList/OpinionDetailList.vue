@@ -24,7 +24,7 @@
       <div class="list-wrapper" v-else>
       <swipeout>
       <ul>
-        <li  v-for="(item,index) in docList" :key="index" class="list-item vux-1px-b">
+        <li v-for="(item,index) in docList" :key="index" class="list-item vux-1px-b">
          <swipeout-item style="width:100%;">
           <div slot="right-menu">
           <swipeout-button style="font-size:0.28rem" background-color="#f61d00"  @click.native="del(item.sid)">删除</swipeout-button>

@@ -1,6 +1,6 @@
 <template>
   <div class="origin">
-  <iframe :src="originalUrl" frameborder="0" width="100%" height="100%" security="restricted" sandbox="allow-scripts"></iframe>
+  <iframe id='if_content' name="if_content"  :src="originalUrl" frameborder="0" width="100%" height="100%" security="restricted" sandbox="allow-scripts"></iframe>
   </div>
 </template>
 
@@ -18,7 +18,8 @@
 
 <style scoped>
    .origin{
-      width: 100%;
+      width: 94%;
       height:100%;
+      padding:0 20px;
    }
 </style>

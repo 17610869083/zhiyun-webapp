@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
   if(to.path==='/login'){
       next()
   }else{
-    request('http://web.is8.com.cn/om/mpart/oWork/reportDo?action=getResourceByUserId&model=2&page=1')
+    request(`http://119.90.61.155/om31/mpart/oWork/reportDo?action=getResourceByUserId&model=2&page=1`)
     .then(res => {
       if(res.data===undefined){
         app.$vux.alert.show({

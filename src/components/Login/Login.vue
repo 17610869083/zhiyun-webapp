@@ -45,9 +45,14 @@
     },
     created(){
         const state=JSON.parse(localStorage.getItem('user'))
-        if(state.user ){
+        if(state.user){
           request(`${baseHost}common/login/loginDo?action=login2&username=${state.user}&password=${state.password}`)
-          this.$router.push('/home')
+          .then(res => {
+             if(res.data.code === 1){
+                this.$router.push('/home')
+             }
+          })
+          
         }
     },
     methods: {

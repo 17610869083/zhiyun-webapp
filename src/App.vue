@@ -9,7 +9,7 @@
       <div slot="drawer" class="drawer-left">
         <div class="user-info">
           <div class="avatar" v-if="info.logourl">
-            <img :src="'http://119.90.61.155/om3'+info.logourl +'&t= '+new Date()" alt="logo">
+            <img :src="'http://web.is8.com.cn/om'+info.logourl +'&t= '+new Date()" alt="logo">
             <!-- <img src="./components/OpinionSearch/logo.jpg" alt="logo"> -->
           </div>
           <div class="desc">
@@ -343,6 +343,11 @@ export default {
     position: absolute;
   }
   .weui-tab {
+  .weui-bar__item_on{
+    .weui-tabbar__label{
+      color:#2D324F;
+    }
+  }
     /*#vux_view_box_body {*/
       /*.vux-pop-out-enter-active,*/
       /*.vux-pop-out-leave-active,*/
@@ -374,6 +379,7 @@ export default {
       /*}*/
     /*}*/
   }
+
   .drawer-left {
     background: url('http://owd9ip8d2.bkt.clouddn.com/left-background.jpg') no-repeat left;
     color: #ffffff;

@@ -133,7 +133,9 @@
         content.style.height = picHeight + 10 + 'px'
       },
       _loadBase() {
+        this.showLoading = true;
         request(baseHost + 'mpart/oWork/reportDo?action=getResourceByUserId&model=1').then(res => {
+          this.showLoading = false;
           if(res.data.code===1){
              if(res.data.docList.length===0 || this.loadMorePage>=res.data.pageinfo.pagecount){
               this.flag=false
@@ -333,6 +335,7 @@
     .list-wrapper {
       padding:0 0.2rem;
       overflow: scroll;
+      width:100%;
       .list-item {
         display: flex;
         .check-wrapper {

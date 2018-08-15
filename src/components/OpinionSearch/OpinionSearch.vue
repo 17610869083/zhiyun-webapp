@@ -109,6 +109,7 @@
         <div class="mask" :style="sortType !==''? 'display:block;': 'display:none;'"
           @click="maskClick" @touchmove.prevent
         ></div>
+        <loading :show="this.showLoading" text="正在加载..."></loading>
       </div>
 </template>
 <script type="text/ecmascript-6">
@@ -208,7 +209,8 @@ export default {
             reportName:'',
             loadMoreBtn:false,
             timeBtn:'',
-            delState:1
+            delState:1,
+            showLoading:false
         }
     },
     beforeRouteLeave(to, from, next) {
@@ -220,6 +222,7 @@ export default {
             }
     },
     created(){
+          this.showLoading = true;
           requestDoclist(api_doc_searchDo,this.param)
           .then(res => {
                if(res.data.code===1){
@@ -227,6 +230,7 @@ export default {
                    this.carryCount=res.data.carryCount
                    this.loadMoreBtn=true
                    this.inputValue=this.param.keyword
+                   this.showLoading = false
                }
           })
     },
@@ -274,12 +278,14 @@ export default {
       },
       keydown(event){
          if(event.keyCode===13){
+          this.showLoading = true;   
           event.target.blur()
           document.querySelector('.weui-tabbar').style.position='absolute'   
           const param = Object.assign({}, this.param, {keyword: this.inputValue})
           this.$store.commit('SEARCH_PARAM',param)
           request(api_doc_searchDo +`&keyword=${this.inputValue}`)
           .then(res => {
+               this.showLoading = false;
                if(res.data.code===1){
                    this.docList=res.data.docList
                    this.remove=!this.remove
@@ -291,9 +297,11 @@ export default {
              }
       },
       async loadMore(){
+          this.showLoading = true;
           const param = Object.assign({}, this.param, {page:this.param.page+1})
           this.$store.commit('SEARCH_PARAM',param)
           let docData= await requestDoclist(api_doc_searchDo,this.param)
+          this.showLoading = false;
           if(docData.data.code===1){
              this.docList=this.docList.concat(docData.data.docList)
              this.carryCount=docData.data.carryCount

@@ -224,6 +224,7 @@ export default {
             }
         },
     created(){ 
+          this.showLoading = true;
           if(this.param.timeValue!=='all' || this.param.trendValue!=='all'){
                  this.flag=false
           }
@@ -238,6 +239,7 @@ export default {
                             this.carryCount=res.data.carryCount
                             const state= res.data.pageInfo.count<=10?false:true
                             this.loadMoreBtn=state
+                            this.showLoading = false
                         }
                     })
                }else{
@@ -420,9 +422,11 @@ export default {
           this.sortType=''
       },
       async submit(){
+          this.showLoading = true;
           this.sortType=''
           this.flag=false
           let docData= await requestDoclist(api_doc_searchDo,this.param)
+          this.showLoading = false;
           if(docData.data.code===1){
              this.docList=docData.data.docList
              this.carryCount=docData.data.carryCount
@@ -449,6 +453,7 @@ export default {
       },
       //选择来源
       async carryChange(value){
+            this.showLoading = true;
             if(value===this.carry){
                  this.carry='all'
             }else{
@@ -458,6 +463,7 @@ export default {
                         const param = Object.assign({}, this.param, {carry: value})
                         this.$store.commit('SEARCH_PARAM',param)
                         let docData= await requestDoclist(api_doc_searchDo,param)
+                        this.showLoading = false;
                     if(docData.data.code===1){
                         this.docList=docData.data.docList
                         this.carryCount=docData.data.carryCount
@@ -472,11 +478,13 @@ export default {
       },
       //选择倾向
      async trendClick(trend){
+        this.showLoading = true;
         this.sortType=''
         this.flag=false
         const param = Object.assign({}, this.param, {trendValue: trend})
         this.$store.commit('SEARCH_PARAM',param)
         let docData= await requestDoclist(api_doc_searchDo,param)
+        this.showLoading = false;
           if(docData.data.code===1){
              this.docList=docData.data.docList
              this.carryCount=docData.data.carryCount
@@ -496,6 +504,7 @@ export default {
           this.$store.commit('SEARCH_PARAM',param)
         },
       async Timesubmit(){
+          this.showLoading = true;
          if(this.timeBtn===''){
          if(this.dateStart==='' || this.dateEnd===''){
                 this.showAlert = true
@@ -504,6 +513,7 @@ export default {
          }
           this.sortType=''
           let docData= await requestDoclist(api_doc_searchDo,this.param)
+          this.showLoading = false;
           if(docData.data.code===1){
              this.docList=docData.data.docList
              this.carryCount=docData.data.carryCount

@@ -77,6 +77,9 @@
         if (!!this.oldPassword && !!this.newPassword) {
           request(api_edit_password +`&password=${this.newPassword}&oldPassword=${this.user.password}`).then(res => {
             if (res.data) {
+              let user = JSON.parse(localStorage.getItem('user'));
+              user.password = this.newPassword;
+              localStorage.setItem('user',JSON.stringify(user));
               AlertModule.show({
                 content: res.data.msg
               })
