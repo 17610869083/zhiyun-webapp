@@ -5,7 +5,6 @@ export const baseHost = 'http://119.90.61.155/om31/';
 //export const baseHost = 'http://web.is8.com.cn/om/';
 //新版报告
 export const api_new_report = 'http://119.90.61.155/om31/webpart/report/exportReport?action=downloadReport';
-//&reportId=1760&dType=html
 //获取专题列表
 export const api_get_topicMemu= host +'oTopic/TopicDo?action=getTopicMemu';
 //添加专题

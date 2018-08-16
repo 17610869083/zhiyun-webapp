@@ -20,6 +20,6 @@
    .origin{
       width: 94%;
       height:100%;
-      padding:0 20px;
+      padding-left:20px;
    }
 </style>
